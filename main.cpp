@@ -51,17 +51,18 @@ int main() {
     //Busqueda
     foundIndex = busquedaSecuencial(numeros, n, numToFind);
 
+    //Representacion
+    std::cout << "Indice encontrado: " << foundIndex << std::endl;
+    std::cout << "Comprobacion: " << numeros[foundIndex] << std::endl;
+
     //Referencia de tiempo despues
     auto t2 = std::chrono::high_resolution_clock::now();
 
-    //Calculo de duracion
+    //Duracion medida
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
 
-    //Representacion de lo encontrado
-    std::cout << "\nBusqueda secuencial" << std::endl;
-    std::cout << "Indice encontrado: " << foundIndex << std::endl; //Indice
-    std::cout << "Comprobacion: " << numeros[foundIndex] << std::endl; //Numero en el indice encontrado en el vector
-    std::cout << std::endl << "Duracion secuencial: " << duration << " microsegundos" << std::endl; //Duracion de busqueda
+    //Imprime duracion
+    std::cout << std::endl << "Duracion secuencial: " << duration << " microsegundos" << std::endl;
 
     return 0;
 }
