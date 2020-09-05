@@ -5,7 +5,8 @@
 #include <iterator>
 #include <vector>
 
-int busquedaSecuencial(std::vector<int> vect, int N, int valor){
+template <typename T>
+int busquedaSecuencial(std::vector<T> vect, T N, T valor){
     int i = 0;
     int encontrado = -1;
     while (encontrado == -1 && i < N){
