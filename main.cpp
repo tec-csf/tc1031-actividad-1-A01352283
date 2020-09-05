@@ -1,67 +1,67 @@
 #include <iostream>
 #include <algorithm>
-#include "Ordenamiento.h"
 #include <time.h>
+#include <chrono>
 #include <iterator>
+#include <vector>
 
+int busquedaSecuencial(std::vector<int> vect, int N, int valor){
+    int i = 0;
+    int encontrado = -1;
+    while (encontrado == -1 && i < N){
+        if ( valor == vect[i] ) {
+            encontrado = i;
+        }
+         i++;
+    }
+    return encontrado;
+}
 
-int main(int argc, const char * argv[]) {
+int main() {
 
-    /* Establecer la semilla del generador */
+    //Establecer la semilla
     srand((unsigned int) time(nullptr));
 
-    /* Definir cantidad de elementos */
-    const int n = 10;
+    //Definir cantidad de elementos
+    const int n = 100000;
 
-    /*
-    * Ordenar números enteros
-    */
+    //Indice del numero buscado
+    int foundIndex = 0;
 
-    std::cout << "- Ordenamiento de números enteros -" << std::endl;
+    //Numero a buscar
+    int numToFind;
 
-    /* Definir un vector de enteros */
+    //Pedida del numero a buscar
+    std::cout << "Escribe el numero a buscar: ";
+    std::cin >> numToFind;
+
+    //Definir un vector de enteros
     std::vector<int> numeros(n);
 
-    /* Generar un vector de números enteros utilizando una función Lambda */
+    //Generar un vector de números enteros utilizando una función Lambda
     std::generate(numeros.begin(), numeros.end(), [](){return rand() % 100;});
 
-    /* Imprimir el vector original */
-    copy(numeros.begin(), numeros.end(), std::ostream_iterator<int>(std::cout, " "));
-
-    std::cout << std::endl;
-
-    /* Ordenar el vector de números */
-    numeros = Ordenamiento<int>::insercion(numeros, Ordenamiento<int>::asc);
-
-    /* Imprimir el vector ordenado */
-    std::copy(numeros.begin(), numeros.end(), std::ostream_iterator<int>(std::cout, " "));
-
-    std::cout << std::endl << std::endl;
-
     /*
-     * Ordenar números en punto flotante
-     */
+    Busqueda secuencial
+    */
 
-    std::cout << "- Ordenamiento de números flotantes -" << std::endl;
+    //Referencia de tiempo antes
+    auto t1 = std::chrono::high_resolution_clock::now();
 
-    /* Definir un vector de flotantes */
-    std::vector<float> numeros_f(n);
+    //Busqueda
+    foundIndex = busquedaSecuencial(numeros, n, numToFind);
 
-    /* Generar un vector de números enteros utilizando una función Lambda */
-    std::generate(numeros_f.begin(), numeros_f.end(), [](){return rand() % 100 * 0.5;});
+    //Referencia de tiempo despues
+    auto t2 = std::chrono::high_resolution_clock::now();
 
-    /* Imprimir el vector original */
-    std::copy(numeros_f.begin(), numeros_f.end(), std::ostream_iterator<float>(std::cout, " "));
+    //Calculo de duracion
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
 
-    std::cout << std::endl;
-
-    /* Ordenar el vector de números */
-    numeros_f = Ordenamiento<float>::seleccion(numeros_f, Ordenamiento<float>::desc);
-
-    /* Imprimir el vector ordenado */
-    std::copy(numeros_f.begin(), numeros_f.end(), std::ostream_iterator<float>(std::cout, " "));
-
-    std::cout << std::endl << std::endl;
+    //Representacion de lo encontrado
+    std::cout << "\nBusqueda secuencial" << std::endl;
+    std::cout << "Indice encontrado: " << foundIndex << std::endl; //Indice
+    std::cout << "Comprobacion: " << numeros[foundIndex] << std::endl; //Numero en el indice encontrado en el vector
+    std::cout << std::endl << "Duracion secuencial: " << duration << " microsegundos" << std::endl; //Duracion de busqueda
 
     return 0;
 }
