@@ -65,6 +65,7 @@ int busquedaBinaria(std::vector<T> vect, T N, T valor){
     while (vect[mitad] != valor && inf <= sup);
 
     std::cout << "Valor: " << valor << std::endl;
+    std::cout << "Vect en mitad: " << vect[mitad] << std::endl;
     std::cout << "Mitad: " << mitad << std::endl;
 
 
@@ -102,6 +103,8 @@ int main() {
     std::cout << "Escribe el tipo de busqueda: 1-secuencial, 2-secuencial con mov al frente, 3-secuencial con transposicion, 4-secuencial con ordenamiento, 5-binaria: ";
     std::cin >> searchNum;
     std::cout << std::endl;
+
+
 
     //Busqueda secuencial
     for(int i = 0; i < 15; i++){
@@ -195,6 +198,8 @@ int main() {
 
                 std::cout << "Secuencial con ordenamiento" << std::endl;
 
+                numeros = Ordenamiento<int>::seleccion(numeros, Ordenamiento<int>::asc);
+
                 auto t1 = std::chrono::high_resolution_clock::now();
 
                 //Realiza la busqueda y asigna el indice encontrado a la variable foundIndex
@@ -218,6 +223,8 @@ int main() {
             case 5:{ //Binaria
 
                 std::cout << "Binaria" << std::endl;
+
+                numeros = Ordenamiento<int>::seleccion(numeros, Ordenamiento<int>::asc);
 
                 //Referencia de tiempo antes
                 auto t1 = std::chrono::high_resolution_clock::now();
