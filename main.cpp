@@ -37,34 +37,38 @@ int main() {
     std::cout << std::endl;
 
     for(int i = 0; i < 15; i++){
+
+        //Iteration number
+        std::cout << "Iteration number: " << i+1 << std::endl;
+
         //Definir un vector de enteros
-    std::vector<int> numeros(n);
+        std::vector<int> numeros(n);
 
-    //Generar un vector de números enteros utilizando una función Lambda
-    std::generate(numeros.begin(), numeros.end(), [](){return rand() % 100;});
+        //Generar un vector de números enteros utilizando una función Lambda
+        std::generate(numeros.begin(), numeros.end(), [](){return rand() % 100;});
 
-    /*
-    Busqueda secuencial
-    */
+        /*
+        Busqueda secuencial
+        */
 
-    //Referencia de tiempo antes
-    auto t1 = std::chrono::high_resolution_clock::now();
+        //Referencia de tiempo antes
+        auto t1 = std::chrono::high_resolution_clock::now();
 
-    //Busqueda
-    foundIndex = busquedaSecuencial(numeros, n, numToFind);
+        //Busqueda
+        foundIndex = busquedaSecuencial(numeros, n, numToFind);
 
-    //Representacion
-    std::cout << "Indice encontrado: " << foundIndex << std::endl;
-    std::cout << "Comprobacion: " << numeros[foundIndex] << std::endl;
+        //Representacion
+        std::cout << "Indice encontrado: " << foundIndex << std::endl;
+        std::cout << "Comprobacion: " << numeros[foundIndex] << std::endl;
 
-    //Referencia de tiempo despues
-    auto t2 = std::chrono::high_resolution_clock::now();
+        //Referencia de tiempo despues
+        auto t2 = std::chrono::high_resolution_clock::now();
 
-    //Duracion medida
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
+        //Duracion medida
+        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
 
-    //Imprime duracion
-    std::cout << "Duracion secuencial: " << duration << " microsegundos" << std::endl << std::endl;
+        //Imprime duracion
+        std::cout << "Duracion secuencial: " << duration << " microsegundos" << std::endl << std::endl;
 
     }
 
