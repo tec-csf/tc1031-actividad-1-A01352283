@@ -34,8 +34,10 @@ int main() {
     //Pedida del numero a buscar
     std::cout << "Escribe el numero a buscar: ";
     std::cin >> numToFind;
+    std::cout << std::endl;
 
-    //Definir un vector de enteros
+    for(int i = 0; i < 15; i++){
+        //Definir un vector de enteros
     std::vector<int> numeros(n);
 
     //Generar un vector de números enteros utilizando una función Lambda
@@ -62,7 +64,9 @@ int main() {
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
 
     //Imprime duracion
-    std::cout << std::endl << "Duracion secuencial: " << duration << " microsegundos" << std::endl;
+    std::cout << "Duracion secuencial: " << duration << " microsegundos" << std::endl << std::endl;
+
+    }
 
     return 0;
 }
